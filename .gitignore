@@ -14,6 +14,9 @@ local.properties
 .loadpath
 .recommenders
 
+#
+cms-scaffolding.txt
+
 # External tool builders
 .externalToolBuilders/
 
