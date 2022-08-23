@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+
+  postgres14:
+    container_name: postgres14
+    image: postgres:14-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: 1003
+      POSTGRES_DB: calculator
+    volumes:
+      - data-psql:/var/lib/postgresql/data
+    networks:
+      - spring
+
+volumes:
+  data-psql:
+    name: data-psql
+
+networks:
+  spring:
+    name: spring

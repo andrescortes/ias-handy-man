@@ -1,23 +1,27 @@
 package co.com.ias.hourscalculator.model.reportservicemodel;
 
-import java.time.LocalDate;
+
+
+import java.time.LocalDateTime;
+
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @Builder(toBuilder = true)
 @NoArgsConstructor(force = true)
 @AllArgsConstructor
-public class ReportServiceModel {
+public class ReportService {
 
-    private String reportServiceModelId;
+    private String reportServiceId;
     private String technicianId;
-    private LocalDate serviceStartDate;
-    private LocalDate serviceEndDate;
+    private LocalDateTime serviceStartDate;
+    private LocalDateTime serviceEndDate;
+
+
 
 }
 
