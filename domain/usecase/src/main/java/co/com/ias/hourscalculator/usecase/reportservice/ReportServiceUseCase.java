@@ -2,6 +2,8 @@ package co.com.ias.hourscalculator.usecase.reportservice;
 
 import co.com.ias.hourscalculator.model.reportservicemodel.ReportService;
 import co.com.ias.hourscalculator.model.reportservicemodel.gateways.ReportServiceRepository;
+import co.com.ias.hourscalculator.usecase.reportservice.utils.Dates;
+import co.com.ias.hourscalculator.usecase.reportservice.utils.ValidateEntity;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 
@@ -11,9 +13,9 @@ public class ReportServiceUseCase {
     private final ReportServiceRepository repository;
 
     public ReportService saveReportServiceModel(ReportService reportService) {
-        if(reportService.getReportServiceId() == null ){
-            throw new IllegalArgumentException("Invalid Service id");
-        }
+        ValidateEntity.isValid(reportService);
+        Dates.dateValidateStartDateAndEndDate(reportService.getServiceStartDate(),
+            reportService.getServiceEndDate());
         return repository.saveReportService(reportService);
     }
 

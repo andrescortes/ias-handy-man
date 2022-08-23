@@ -1,7 +1,6 @@
 package co.com.ias.hourscalculator.model.reportservicemodel;
 
 
-
 import java.time.LocalDateTime;
 
 

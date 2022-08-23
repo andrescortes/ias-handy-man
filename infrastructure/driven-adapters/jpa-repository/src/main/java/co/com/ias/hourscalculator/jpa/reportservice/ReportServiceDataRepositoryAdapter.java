@@ -20,7 +20,8 @@ public class ReportServiceDataRepositoryAdapter extends
          *  Or using mapper.map with the class of the object model
          */
         super(repository, mapper,
-            d -> mapper.mapBuilder(d, ReportService.ReportServiceBuilder.class).build());
+            //d -> mapper.mapBuilder(d, ReportService.ReportServiceBuilder.class).build());
+            d -> mapper.map(d, ReportService.class));
     }
 
     @Override

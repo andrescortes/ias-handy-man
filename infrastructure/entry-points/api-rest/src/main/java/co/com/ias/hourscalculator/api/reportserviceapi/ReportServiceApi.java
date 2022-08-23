@@ -1,13 +1,10 @@
 package co.com.ias.hourscalculator.api.reportserviceapi;
 
 
-import co.com.ias.hourscalculator.api.reportserviceapi.helper.payload.ReportServiceRequestDto;
-import co.com.ias.hourscalculator.api.reportserviceapi.helper.validate.ValidateDate;
 import co.com.ias.hourscalculator.model.reportservicemodel.ReportService;
 import co.com.ias.hourscalculator.usecase.reportservice.ReportServiceUseCase;
-import java.time.format.DateTimeParseException;
 import java.util.List;
-import javax.validation.Valid;
+import java.util.Objects;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -29,33 +26,15 @@ public class ReportServiceApi {
 
     @GetMapping
     public ResponseEntity<List<ReportService>> getAllReportServices() {
-        return new ResponseEntity<>(useCase.getReportServicesModels(), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(useCase.getReportServicesModels(), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<ReportService> addReportService(
+    public ResponseEntity<?> addReportService(
         @RequestBody
-        @DateTimeFormat(iso = ISO.DATE_TIME)
-        @Valid final ReportServiceRequestDto reportServiceRequestDTO
-    ) {
-
-        boolean isValid = ValidateDate.dateValidateStartDateAndEndDate(
-            reportServiceRequestDTO.getServiceStartDate(),
-            reportServiceRequestDTO.getServiceEndDate());
-        if (isValid) {
-
-            ReportService reportService = ReportService.builder()
-                .reportServiceId(reportServiceRequestDTO.getReportServiceId())
-                .technicianId(reportServiceRequestDTO.getTechnicianId())
-                .serviceStartDate(reportServiceRequestDTO.getServiceStartDate())
-                .serviceEndDate(reportServiceRequestDTO.getServiceEndDate())
-                .build();
-            return new ResponseEntity<>(useCase.saveReportServiceModel(reportService),
-                HttpStatus.CREATED);
-        } else {
-            throw new IllegalArgumentException("Start date must be less than end date.");
-        }
-
+        @DateTimeFormat(iso = ISO.DATE_TIME) final ReportService reportService) {
+        return new ResponseEntity<>(useCase.saveReportServiceModel(reportService),
+            HttpStatus.CREATED);
     }
 
 }
