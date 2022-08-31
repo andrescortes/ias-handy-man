@@ -25,6 +25,10 @@ subprojects {
 
     test.finalizedBy(project.tasks.jacocoTestReport)
 
+    test {
+        useJUnitPlatform()
+    }
+
     jacocoTestReport {
         dependsOn test
         reports {

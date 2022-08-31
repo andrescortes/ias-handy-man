@@ -1,9 +1,13 @@
 apply plugin: 'org.springframework.boot'
 
 dependencies {
+	implementation project( ':api-rest')
+	implementation 'org.reactivecommons.utils:object-mapper:0.1.0'
+	implementation project( ':jpa-repository')
     implementation project(':model')
     implementation project(':usecase')
     implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.postgresql:postgresql:42.3.6'
     runtimeOnly('org.springframework.boot:spring-boot-devtools')
 }
 
@@ -20,4 +24,8 @@ jar {
 bootJar {
     // Sets output jar name
     archiveFileName = "${project.getParent().getName()}.${archiveExtension.get()}"
+}
+
+repositories {
+    mavenCentral()
 }
