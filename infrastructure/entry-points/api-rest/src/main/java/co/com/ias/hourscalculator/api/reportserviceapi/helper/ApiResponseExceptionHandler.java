@@ -1,11 +1,6 @@
-package co.com.ias.hourscalculator.api.reportserviceapi.helper.handler;
+package co.com.ias.hourscalculator.api.reportserviceapi.helper;
 
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

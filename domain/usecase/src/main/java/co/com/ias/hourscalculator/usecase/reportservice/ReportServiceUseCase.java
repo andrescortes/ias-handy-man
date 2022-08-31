@@ -2,7 +2,7 @@ package co.com.ias.hourscalculator.usecase.reportservice;
 
 import co.com.ias.hourscalculator.model.reportservicemodel.ReportService;
 import co.com.ias.hourscalculator.model.reportservicemodel.gateways.ReportServiceRepository;
-import co.com.ias.hourscalculator.usecase.reportservice.utils.Dates;
+import co.com.ias.hourscalculator.usecase.reportservice.utils.ValidateDates;
 import co.com.ias.hourscalculator.usecase.reportservice.utils.ValidateEntity;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ public class ReportServiceUseCase {
 
     public ReportService saveReportServiceModel(ReportService reportService) {
         ValidateEntity.isValid(reportService);
-        Dates.dateValidateStartDateAndEndDate(reportService.getServiceStartDate(),
+        ValidateDates.dateValidateStartDateAndEndDate(reportService.getServiceStartDate(),
             reportService.getServiceEndDate());
         return repository.saveReportService(reportService);
     }
