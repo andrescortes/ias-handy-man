@@ -1,4 +1,4 @@
-package co.com.ias.hourscalculator.jpa.reportservice;
+package co.com.ias.hourscalculator.jpa.entity;
 
 import java.time.LocalDateTime;
 import javax.persistence.Column;
@@ -20,13 +20,13 @@ public class ReportServiceData {
     @Column(name = "report_service_id")
     private String reportServiceId;
 
-    @Column(name = "technician_id", nullable = false)
+    @Column(name = "technician_id")
     private String technicianId;
 
-    @Column(name = "service_start_date", nullable = false)
+    @Column(name = "service_start_date")
     private LocalDateTime serviceStartDate;
 
-    @Column(name = "service_end_date", nullable = false)
+    @Column(name = "service_end_date")
     private LocalDateTime serviceEndDate;
 
 }

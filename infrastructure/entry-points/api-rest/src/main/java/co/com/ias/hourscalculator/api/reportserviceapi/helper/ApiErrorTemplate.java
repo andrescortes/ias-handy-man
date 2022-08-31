@@ -1,4 +1,4 @@
-package co.com.ias.hourscalculator.api.reportserviceapi.helper.handler;
+package co.com.ias.hourscalculator.api.reportserviceapi.helper;
 
 import java.time.LocalDateTime;
 import lombok.Data;
