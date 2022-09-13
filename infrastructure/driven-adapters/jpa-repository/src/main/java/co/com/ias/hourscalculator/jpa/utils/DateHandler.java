@@ -9,16 +9,10 @@ import java.util.List;
 
 public class DateHandler {
 
-    public static final int EIGHT_HOURS_TO_SECONDS = 28800;
-
     public static List<LocalDateTime> getRangeDateByWeekYear(Long weekYear) {
         LocalDateTime firstDayOfWeek = firstDayOfWeek(weekYear);
         LocalDateTime lastDayOfWeek = lastDayOfWeek(weekYear);
         return List.of(firstDayOfWeek.with(LocalTime.of(0, 0, 0)), lastDayOfWeek);
-    }
-
-    public static int hoursToSeconds(LocalDateTime dateTime) {
-        return dateTime.toLocalTime().toSecondOfDay();
     }
 
     public static LocalDateTime firstDayOfWeek(Long weekYear) {

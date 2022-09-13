@@ -13,16 +13,12 @@ public class WorkedHoursCalculateUseCase {
     private final ReportServiceHoursWorkedGateway reportServiceHoursWorkedGateway;
 
     public ResponseHoursCalculated getHoursWorkedByTechnician(String technicianId, Long weekYear) {
-        List<ReportService> reportServiceList = reportServiceHoursWorkedGateway.getTechnicianAndWeekYear(
-            technicianId, weekYear);
-
+        List<ReportService> reportServiceList = reportServiceHoursWorkedGateway
+            .getTechnicianAndWeekYear(technicianId, weekYear);
         if (reportServiceList == null || reportServiceList.isEmpty()) {
             return null;
         }
-
         CalculatorHours calculatorHours = new CalculatorHours();
-        ResponseHoursCalculated hoursWorked = calculatorHours.getHoursWorked(reportServiceList);
-        System.out.println("hoursWorked = " + hoursWorked);
-        return hoursWorked;
+        return calculatorHours.getHoursWorked(reportServiceList);
     }
 }

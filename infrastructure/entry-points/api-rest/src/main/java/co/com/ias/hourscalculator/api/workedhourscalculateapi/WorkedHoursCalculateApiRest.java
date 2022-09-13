@@ -23,8 +23,8 @@ public class WorkedHoursCalculateApiRest {
     @GetMapping("/technician/{technicianId}/week/{week}")
     public ResponseEntity<?> getHours(@PathVariable final String technicianId,
         @PathVariable final Long week) {
-        ResponseHoursCalculated hoursWorkedByTechnician = workedHoursCalculateUseCase.getHoursWorkedByTechnician(
-            technicianId, week);
+        ResponseHoursCalculated hoursWorkedByTechnician = workedHoursCalculateUseCase
+            .getHoursWorkedByTechnician(technicianId, week);
         if (hoursWorkedByTechnician == null) {
             return new ResponseEntity<>(0, HttpStatus.OK);
         }
