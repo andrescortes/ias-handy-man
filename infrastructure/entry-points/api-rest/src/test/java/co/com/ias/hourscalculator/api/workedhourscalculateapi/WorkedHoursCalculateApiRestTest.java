@@ -32,12 +32,12 @@ class WorkedHoursCalculateApiRestTest {
 
         //given
         ResponseHoursCalculated responseHoursCalculated = ResponseHoursCalculated.builder()
-            .secondsAtNormalDay(7200)
-            .secondsOvertime(0)
-            .secondsAtNight(0)
-            .secondsOvertimeNight(0)
-            .secondsSunday(0)
-            .secondsOvertimeSunday(0)
+            .normal(7200)
+            .overtime(0)
+            .night(0)
+            .overtimeNight(0)
+            .sunday(0)
+            .overtimeSunday(0)
             .build();
         String technicianId = "test";
         int week = 1;
@@ -49,12 +49,12 @@ class WorkedHoursCalculateApiRestTest {
             //expected
             .expectStatus().isOk()
             .expectBody()
-            .jsonPath("$.secondsAtNormalDay").isEqualTo(7200)
-            .jsonPath("$.secondsOvertime").isEqualTo(0)
-            .jsonPath("$.secondsAtNight").isEqualTo(0)
-            .jsonPath("$.secondsOvertimeNight").isEqualTo(0)
-            .jsonPath("$.secondsSunday").isEqualTo(0)
-            .jsonPath("$.secondsOvertimeSunday").isEqualTo(0)
+            .jsonPath("$.normal").isEqualTo(7200)
+            .jsonPath("$.overtime").isEqualTo(0)
+            .jsonPath("$.night").isEqualTo(0)
+            .jsonPath("$.overtimeNight").isEqualTo(0)
+            .jsonPath("$.sunday").isEqualTo(0)
+            .jsonPath("$.overtimeSunday").isEqualTo(0)
             .json(objectMapper.writeValueAsString(responseHoursCalculated));
 
     }

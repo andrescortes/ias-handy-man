@@ -12,7 +12,7 @@ public interface ReportServiceDataRepository extends CrudRepository<ReportServic
 
     //@Query("select (count(r) > 0) from ReportServiceData r where  r.serviceStartDate between ?1  and r.serviceEndDate = ?2")
     //@Query(value = "select count(*) > 0 from reportservicedata where ((service_start_date between ?1 and ?2) or (service_end_date between ?1 and ?2)) and technician_id=?3", nativeQuery = true)
-    @Query(value="select count(*) > 0 from reportservicedata where service_start_date <= ?2 and service_end_date > ?1 and technician_id=?3", nativeQuery = true)
+    @Query(value="select count(*) > 0 from reportservicedata where service_start_date < ?2 and service_end_date > ?1 and technician_id=?3", nativeQuery = true)
     boolean getInstanceBetweenTwoDates(LocalDateTime serviceStartDate, LocalDateTime serviceEndDate,
         String technicianId);
 
