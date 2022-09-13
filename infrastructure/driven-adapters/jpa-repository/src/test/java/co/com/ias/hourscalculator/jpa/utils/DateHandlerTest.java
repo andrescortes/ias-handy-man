@@ -13,7 +13,7 @@ class DateHandlerTest {
     @Test
     void getRangeDateByWeekYear() {
         Long week = 1L;
-        String startMonday = "2022-01-03T07:00:00";
+        String startMonday = "2022-01-03T00:00:00";
         LocalDateTime startWeekDay = LocalDateTime.parse(startMonday);
         String endSunday = "2022-01-09T23:59:59.999999999";
         LocalDateTime endWeekDay = LocalDateTime.parse(endSunday);

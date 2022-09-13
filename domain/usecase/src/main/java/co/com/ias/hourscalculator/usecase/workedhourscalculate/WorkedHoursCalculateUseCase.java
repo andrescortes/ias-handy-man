@@ -15,33 +15,14 @@ public class WorkedHoursCalculateUseCase {
     public ResponseHoursCalculated getHoursWorkedByTechnician(String technicianId, Long weekYear) {
         List<ReportService> reportServiceList = reportServiceHoursWorkedGateway.getTechnicianAndWeekYear(
             technicianId, weekYear);
-        List<ReportService> reportServiceMonday = reportServiceHoursWorkedGateway.getTechnicianAndWeekYearToMonday(
-            technicianId, weekYear);
 
-        if ((reportServiceList == null || reportServiceList.isEmpty())
-            && reportServiceMonday.isEmpty()) {
+        if (reportServiceList == null || reportServiceList.isEmpty()) {
             return null;
         }
 
-        Long secondsToMonday = CalculatorHours.getSecondsToMonday(reportServiceMonday);
-        int secondsOfDayNormal = CalculatorHours.getSecondsNormalDay(reportServiceList);
-        int secondsOfNight = CalculatorHours.getSecondsNight(reportServiceList);
-        Long hoursToSunday = CalculatorHours.getSecondsToSunday(reportServiceList);
-        if (secondsToMonday != 0) {
-            if (secondsOfNight == 0) {
-                secondsOfDayNormal += secondsToMonday;
-            } else {
-                secondsOfNight += secondsToMonday;
-            }
-        }
-        return ResponseHoursCalculated.builder()
-            .secondsAtNormalDay(secondsOfDayNormal)
-            .secondsAtNight(secondsOfNight)
-            .secondsSunday(Math.toIntExact(hoursToSunday))
-            .secondsOvertime(CalculatorHours.getOvertime(secondsOfDayNormal))
-            .secondsOvertimeNight(CalculatorHours.getOvertime(secondsOfNight))
-            .secondsOvertimeSunday(CalculatorHours.getOvertimeSunday(secondsOfDayNormal,
-                Math.toIntExact(hoursToSunday)))
-            .build();
+        CalculatorHours calculatorHours = new CalculatorHours();
+        ResponseHoursCalculated hoursWorked = calculatorHours.getHoursWorked(reportServiceList);
+        System.out.println("hoursWorked = " + hoursWorked);
+        return hoursWorked;
     }
 }

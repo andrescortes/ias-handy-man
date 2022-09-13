@@ -31,29 +31,17 @@ public class ReportServiceDataRepositoryAdapter extends
 
     @Override
     public ReportService saveReportService(ReportService reportService) {
-        boolean savingStartMonday = DateHandler.isSavingStartMonday(
-            reportService.getServiceStartDate());
-
-        boolean validRangeHoursToSave = DateHandler.isValidRangeHoursToSave(
-            reportService.getServiceStartDate(),
-            reportService.getServiceEndDate());
-        if (!validRangeHoursToSave || savingStartMonday) {
-            throw new IllegalArgumentException(
-                "Please, choose a date from Monday to Saturday, 7am to 8pm or 8pm to 7am.");
-        }
-        if (DateHandler.isValidTimeWorkedByTechnician(reportService.getServiceStartDate(),
-            reportService.getServiceEndDate())) {
-            throw new IllegalArgumentException("The date must be less at 8 or equal hours");
-        }
 
         Optional<ReportServiceData> optionalReportServiceData = super.repository.getReportServiceDataByReportServiceId(
             reportService.getReportServiceId());
-
+        //update report
         if (optionalReportServiceData.isPresent()) {
+            //equals day
             if (DateHandler.isDateSameWeek(reportService.getServiceStartDate(),
                 reportService.getServiceEndDate())) {
                 return super.save(reportService);
             }
+            //not equals day
             List<ReportService> reportServices = FactoryReportService.divideReportServiceEachWeek(
                 reportService);
             return super.saveAllEntities(reportServices).get(0);
